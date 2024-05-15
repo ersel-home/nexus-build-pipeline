@@ -1,4 +1,6 @@
- on: [push]
+name: Eriks POC
+
+on: [push]
 
 jobs:
   list_contents:
