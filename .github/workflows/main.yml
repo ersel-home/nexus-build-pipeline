@@ -1,9 +1,15 @@
-on: [push]
+ on: [push]
 
 jobs:
   list_contents:
      runs-on: [yocto_build]
      steps:
         # Steps for heavy tasks here
-       - name: List contents of the repository directory
-         run: git clone "ssh://rev.homesmart.ninja:29418/devices/doc" 
+       - name: Init repo
+         run: repo init -u ssh://rev.homesmart.ninja:29418/ikeix/manifest 
+
+       - name: Repo sync
+         run: repo sync --force-sync --fail-fast -cq 
+
+       - name: Make doc
+         run: cd nexus && make doc 
